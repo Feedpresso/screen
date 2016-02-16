@@ -6,10 +6,18 @@
 
 .news-entry {
   padding: 0;
+  height: 100%;
 }
 
 .flexslider-container {
   height: 100%;
+}
+.flexslider, .slides {
+  height: 100%;
+}
+
+body .flexslider .slides img {
+    display: inline;
 }
 
 .background-container {
@@ -17,6 +25,7 @@
   text-align: center; /* ensures the image is always in the h-middle */
   overflow: hidden; /* hide the cropped portion */
   z-index: 0;
+  width: 100%;
 }
 
 .background-container img {
