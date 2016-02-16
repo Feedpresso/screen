@@ -55,6 +55,9 @@ module
             return (text);
         }
     })
-    .controller('RootCtrl', function ($scope, $rootScope, NewsStream, $cookies, $sanitize) {
+    .controller('RootCtrl', function ($scope, $rootScope, NewsStream, $cookies, $sanitize, $interval) {
         $scope.news = NewsStream.query({userId: userId})
+        $interval(function () {
+            $scope.news = NewsStream.query({userId: userId})
+        }, 30 * 60 * 1000);
     });
