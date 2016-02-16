@@ -49,8 +49,10 @@
   -webkit-backface-visibility: hidden;
 }
 .flexslider .slides img {
+/*
   width: 100%;
   display: block;
+/*
 }
 .flexslider .slides:after {
   content: "\0020";

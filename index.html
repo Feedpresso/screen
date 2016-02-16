@@ -25,7 +25,6 @@
 
     <title>Feedpresso Screen</title>
 
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Bitter:400" rel="stylesheet" type="text/css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -54,7 +53,8 @@
                  pause-invisible="false"
                  direction-nav="false"
                  slideshow-speed="15000">
-        <li class="container-fluid news-entry">
+        <li>
+        <div class="container-fluid news-entry">
             <div class="background-container">
                 <img ng-src="{{entry.feed_entry.images[0]}}"/>
             </div>
@@ -63,7 +63,7 @@
             <div class="content-container">
                 <div class="row heading">
                     <div class="col-lg-8 col-lg-offset-1">
-                        <h1 class="heading">{{entry.feed_entry.title}} Some title for you</h1>
+                        <h1 class="heading">{{entry.feed_entry.title}}</h1>
                     </div>
                 </div>
                 <div class="row">
@@ -80,6 +80,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </li>
     </flex-slider>
 

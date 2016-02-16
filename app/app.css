@@ -7,21 +7,30 @@
 .news-entry {
   padding: 0;
   height: 100%;
+  width: 100%;
 }
 
 .flexslider-container {
+  position: fixed;
+  overflow: hidden;
   height: 100%;
+  width: 100%;
 }
-.flexslider, .slides {
+
+.flexslider {
+  height: 100%;
+  border: none;
+}
+
+.slides {
   height: 100%;
 }
 
-body .flexslider .slides img {
-    display: inline;
+.slides li {
+  height: 100%;
 }
 
 .background-container {
-  position: fixed;
   text-align: center; /* ensures the image is always in the h-middle */
   overflow: hidden; /* hide the cropped portion */
   z-index: 0;
@@ -29,6 +38,7 @@ body .flexslider .slides img {
 }
 
 .background-container img {
+  height: 100%;
   width: 100%;
   position: relative; /* allows repositioning */
   left: 100%; /* move the whole width of the image to the right */
@@ -80,7 +90,6 @@ body .flexslider .slides img {
   color: white;
 
   height: 11ex;
-  margin-left: 1em;
   margin-bottom: 3ex;
   padding-bottom: 1ex;
   overflow: hidden;
