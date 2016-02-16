@@ -23,9 +23,10 @@
     <meta name="author" content="">
 
 
-    <title>Feedpresso Screen </title>
+    <title>Feedpresso Screen</title>
 
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:700|Bitter:400" rel="stylesheet" type="text/css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
@@ -48,41 +49,39 @@
 </head>
 
 <body ng-controller="RootCtrl">
-
-
-<flex-slider flex-slide="entry in news track by entry.feed_entry.id"
-             control-nav="false"
-             pause-invisible="false"
-             direction-nav="false"
-             slideshow-speed="10000">
-    <li class="news-entry ">
-        <div class="row">
-            <div class="col-lg-7 col-lg-offset-1">
-                <h1>{{entry.feed_entry.title}}</h1>
+    <flex-slider flex-slide="entry in news track by entry.feed_entry.id"
+                 control-nav="false"
+                 pause-invisible="false"
+                 direction-nav="false"
+                 slideshow-speed="8000">
+        <div class="container-fluid news-entry">
+            <div class="background-container">
+                <img ng-src="{{entry.feed_entry.images[0]}}"/>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-7 col-lg-offset-1">
-                <div class="image-container">
-                    <img class="img-rounded" ng-src="{{entry.feed_entry.images[0]}}"/>
+
+            <div class="scrim-full"></div>
+            <div class="content-container">
+                <div class="row heading">
+                    <div class="col-lg-8 col-lg-offset-1">
+                        <h1 class="heading">{{entry.feed_entry.title}} Some title for you</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-1">
+                        <div class="preview">
+                            <p ng-bind-html="entry.feed_entry.content | htmlToPlaintext | shorten">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-offset-10 col-lg-2 text-right">
+                        <img class="logo-image" src="http://blog.feedpresso.com/img/Logo-Feedpresso-full.svg"/>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <p class="preview-container" ng-bind-html="entry.feed_entry.content | htmlToPlaintext | shorten">
-                </p>
-            </div>
-            <!--<qrcode version="15"-->
-            <!--error-correction-level="M"-->
-            <!--data="{{entry.feed_entry.url}}"-->
-            <!--download="false"-->
-            <!--size="200"></qrcode>-->
         </div>
-    </li>
-</flex-slider>
-
-<footer>
-    <img class="logo-image" src="app/logo.png"/>
-</footer>
+    </flex-slider>
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="app/jquery.flexslider.js"></script>
