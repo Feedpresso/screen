@@ -31,7 +31,7 @@ services
                         headers: headers,
                         isArray: true,
                         transformResponse: function (data, headersGetter) {
-                            data = angular.fromJson(data);
+                            data = angular.fromJson(data).filter(function (elem) { return !!elem.feed_entry.images });
                             return data;
                         },
                     },
@@ -64,12 +64,12 @@ services
 
 var module = angular.module('screen', ['angular-flexslider', 'fpServices', 'ngMaterial', 'ngSanitize', 'monospaced.qrcode', 'ngRoute']);
 module
-    .config(function($locationProvider) {
-            $locationProvider.html5Mode({
-                enabled: true,
-                requireBase: false
-            });
-        }
+    .config(function ($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }
     )
     .filter('htmlToPlaintext', function () {
         return function (text) {
@@ -125,7 +125,7 @@ module
                         .fromPromise(Users.auth().create(user).$promise)
                         .flatMap(function (user) {
                             return Rx.Observable
-                                .fromPromise(Auth.quickUser({access_token: user.email}).$promise);
+                                .fromPromise(Auth.quickUser({ access_token: user.email }).$promise);
                         })
                         .subscribe(function (accessToken) {
                             $cookies.putObject('accessToken', accessToken);
@@ -152,12 +152,12 @@ module
         )
             .flatMap(getAccessToken())
             .subscribe(
-                function (accessToken) {
-                    console.log(accessToken);
+            function (accessToken) {
+                console.log(accessToken);
 
-                    var userId = accessToken.user_id;
+                var userId = accessToken.user_id;
 
-                    $scope.news = Users.auth(accessToken).stream({userId: userId});
-                });
+                $scope.news = Users.auth(accessToken).stream({ userId: userId });
+            });
 
     });
