@@ -105,7 +105,7 @@ module
     })
     .filter('resizeImageUrl', function () {
         return function (text) {
-            return resizedImageUrl(text, 1280);
+            return resizedImageUrl(text, 640);
         }
     })
     .filter('shorten', function () {
