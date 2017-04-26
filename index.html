@@ -63,22 +63,24 @@
 
             <div class="scrim-full"></div>
             <div class="content-container">
-                <div class="row heading">
-                    <div class="col-lg-8 col-lg-offset-1">
-                        <h1 class="heading" xng-bind="entry.feed_entry.title">Kraunasi...</h1>
+                <div class="row header">
+                    <div class="col-lg-10 col-lg-offset-1 text-right">
+                        <img class="logo-image" src="http://blog.feedpresso.com/img/Logo-Feedpresso-full.svg"/>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-1">
+                <div class="row title">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div id="title_container">
+                          <h1 class="title" ng-bind="entry.feed_entry.title">Kraunasi...</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row preview">
+                    <div class="col-lg-10 col-lg-offset-1">
                         <div class="preview">
                             <p ng-bind-html="entry.feed_entry.content | htmlToPlaintext | shorten">
                             </p>
                         </div>
-                    </div>
-                </div>
-                <div class="row footer">
-                    <div class="col-lg-offset-10 col-lg-2">
-                        <img class="logo-image" src="http://blog.feedpresso.com/img/Logo-Feedpresso-full.svg"/>
                     </div>
                 </div>
             </div>

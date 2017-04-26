@@ -52,6 +52,7 @@
   bottom: 0;
   right: 0;
   left: 0;
+  top: 0;
 }
 
 .scrim-full {
@@ -66,15 +67,12 @@
 
 .logo-image {
   width: 200px;
-  margin-bottom: 2ex;
 }
 
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
+h1.title {
+  position: absolute;
+  bottom: 0;
 
-.heading h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 56pt;
   font-weight: 700;
@@ -82,9 +80,9 @@
   text-shadow: 2px 2px 6px rgba(0,0,0,.3);
   text-overflow: ellipsis;
   overflow: hidden;
-  padding-bottom: .8ex;
   line-height: 1.2em;
   max-height: 4.8em;
+  padding-bottom: .8ex;
 }
 
 .preview {
@@ -92,13 +90,28 @@
   font-weight: 400;
   font-size: 24pt;
   color: white;
-
-  height: 11.1ex;
-  margin-bottom: 3ex;
-  padding-bottom: 1ex;
+  line-height: 1.3em;
+  max-height: 5.2em;
   overflow: hidden;
 }
 
 .footer {
   padding-bottom: 1ex;
+}
+
+.row.header {
+  padding-top: 4em;
+}
+
+.row.title {
+}
+
+.row.preview {
+  margin-top: .5em;
+}
+
+#title_container {
+  position: relative;
+  font-size: 56pt;
+  height: 5em;
 }
