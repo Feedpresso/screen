@@ -3,6 +3,29 @@
 // var userId = '56c1e6f0dfab183d5061e5ae';
 // var accessToken = 'Arhsmq0lJSXOeNg2uyDlgnh1UdbqPplQYXvjYs4HxhVAfGG8SGyYniewQYuEUi5o';
 
+function resizedImageUrl(url, width, height) {
+    if (!url) {
+        return null;
+    }
+
+    // let proxyUrl = 'https://imageproxyapp.azurewebsites.net/';
+    var proxyUrl = 'https://imageproxy.feedpresso.com/';
+    if (height && width === null) {
+        proxyUrl += 'x' + height;
+    }
+    if (width && height === null) {
+        proxyUrl += '' + width + 'x';
+    }
+    if (width && height) {
+        proxyUrl += '' + width + 'x' + height;
+    }
+
+    proxyUrl += '/' + encodeURIComponent(url);
+
+    return proxyUrl;
+}
+
+
 var services = angular.module('fpServices', ['ngResource', 'ngCookies', 'ngRoute']);
 services
     .run(function ($http, $cookies) {
@@ -26,12 +49,15 @@ services
                         params: {
                             disable_score_reset: 'True',
                             skip_viewed_entries: 'False',
+                            limit_result: 10,
                             slim_down: 'False'
                         },
                         headers: headers,
                         isArray: true,
                         transformResponse: function (data, headersGetter) {
-                            data = angular.fromJson(data).filter(function (elem) { return !!elem.feed_entry.images });
+                            data = angular.fromJson(data).filter(function (elem) {
+                                return !!elem.feed_entry.images
+                            });
                             return data;
                         },
                     },
@@ -65,17 +91,22 @@ services
 var module = angular.module('screen', ['angular-flexslider', 'fpServices', 'ngMaterial', 'ngSanitize', 'monospaced.qrcode', 'ngRoute']);
 module
     .config(function ($locationProvider) {
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
-    }
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
+        }
     )
     .filter('htmlToPlaintext', function () {
         return function (text) {
             var html = text.replace(/<(?!br\s*\/?)[^>]+>/g, '');
             return html;
         };
+    })
+    .filter('resizeImageUrl', function () {
+        return function (text) {
+            return resizedImageUrl(text, 1280);
+        }
     })
     .filter('shorten', function () {
         return function (text) {
@@ -125,7 +156,7 @@ module
                         .fromPromise(Users.auth().create(user).$promise)
                         .flatMap(function (user) {
                             return Rx.Observable
-                                .fromPromise(Auth.quickUser({ access_token: user.email }).$promise);
+                                .fromPromise(Auth.quickUser({access_token: user.email}).$promise);
                         })
                         .subscribe(function (accessToken) {
                             $cookies.putObject('accessToken', accessToken);
@@ -142,7 +173,7 @@ module
             });
         }
 
-        var interval = 30 * 60 * 1000;
+        var interval = 10 * 60 * 1000;
 
         Rx.Observable.concat(
             Rx.Observable.just(1),
@@ -152,12 +183,12 @@ module
         )
             .flatMap(getAccessToken())
             .subscribe(
-            function (accessToken) {
-                console.log(accessToken);
+                function (accessToken) {
+                    console.log(accessToken);
 
-                var userId = accessToken.user_id;
+                    var userId = accessToken.user_id;
 
-                $scope.news = Users.auth(accessToken).stream({ userId: userId });
-            });
+                    $scope.news = Users.auth(accessToken).stream({userId: userId});
+                });
 
     });

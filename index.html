@@ -51,13 +51,14 @@
 <body ng-controller="RootCtrl">
     <flex-slider flex-slide="entry in news track by entry.feed_entry.id"
                  control-nav="false"
+                 touch="true"
                  pause-invisible="false"
                  direction-nav="false"
                  slideshow-speed="23000">
         <li>
         <div class="container-fluid news-entry">
             <div class="background-container">
-                <img ng-src="{{entry.feed_entry.images[0]}}"/>
+                <img ng-src="{{entry.feed_entry.images[0] | resizeImageUrl}}"/>
             </div>
 
             <div class="scrim-full"></div>
