@@ -10,17 +10,17 @@ function resizedImageUrl(url, width, height) {
 
     // let proxyUrl = 'https://imageproxyapp.azurewebsites.net/';
     var proxyUrl = 'https://imageproxy.feedpresso.com/';
-    if (height && width === null) {
+    if (height && !width) {
         proxyUrl += 'x' + height;
     }
-    if (width && height === null) {
+    if (width && !height) {
         proxyUrl += '' + width + 'x';
     }
     if (width && height) {
         proxyUrl += '' + width + 'x' + height;
     }
 
-    proxyUrl += '/' + encodeURIComponent(url);
+    proxyUrl += '/' + url;
 
     return proxyUrl;
 }
