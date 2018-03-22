@@ -42,10 +42,10 @@ services
                     headers['X-AuthToken'] = btoa(accessToken.user_id + ':' + accessToken.value);
                 }
 
-                return $resource('http://api.feedpresso.com/api/v1/users/:userId', {}, {
+                return $resource('https://api.feedpresso.com/api/v1/users/:userId', {}, {
                     stream: {
                         method: 'GET',
-                        url: 'http://api.feedpresso.com/api/v1/users/:userId/stream',
+                        url: 'https://api.feedpresso.com/api/v1/users/:userId/stream',
                         params: {
                             disable_score_reset: 'True',
                             skip_viewed_entries: 'False',
@@ -77,7 +77,7 @@ services
         }
     })
     .factory('Auth', function ($resource) {
-        return $resource('http://api.feedpresso.com/api/v1/auth/quick_user_token', {}, {
+        return $resource('https://api.feedpresso.com/api/v1/auth/quick_user_token', {}, {
             quickUser: {
                 method: 'GET',
                 transformResponse: function (data, headersGetter) {
